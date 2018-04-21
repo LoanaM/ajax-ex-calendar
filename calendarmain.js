@@ -1,20 +1,29 @@
 var paese = $('#country').val()
-
+var monthselected = "Gennaio"
 // var trentuno = ["Gennaio","Marzo","Maggio","Luglio","Agosto","Ottobre","Dicembre"];
 var trenta = ["Novembre", "Aprile", "Giugno", "Settembre"];
-var monthselected = $('.active .mese').text()
+
 var meseajax = parseInt($('.active').attr('valore'))
 console.log(meseajax)
-console.log(monthselected)
 var bisesto = $('#anno').text()
 
 var ggmese = $('ul')
+var control = "1";
 
 $('#successivo').click(function(){
   if(meseajax!=12) {
     meseajax++
-    console.log(meseajax)
+    $('#' + control).removeClass('active').addClass('displaynone')
+    control++
+    $('#' + control).addClass('active').removeClass('displaynone')
+    console.log(control)
   }
+  else {
+    meseajax="01";
+    bisesto++
+  }
+  monthselected = $('.active .mese').text();
+  console.log(monthselected)
 
     if (trenta.includes(monthselected)) {
       daygenerate(30,monthselected)
