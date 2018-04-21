@@ -1,3 +1,9 @@
 .festività {
   color: red;
 }
+.displaynone {
+  display: none;
+}
+#precedente , #successivo {
+  cursor: pointer;
+}
