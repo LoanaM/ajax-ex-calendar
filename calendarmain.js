@@ -5,7 +5,7 @@ var trenta = ["Novembre", "Aprile", "Giugno", "Settembre"];
 
 var meseajax = parseInt($('.active').attr('valore'))
 console.log(meseajax)
-var bisesto = $('#anno').text()
+var bisesto = "2017";
 
 var ggmese = $('ul')
 var control = "1";
@@ -20,7 +20,10 @@ $('#successivo').click(function(){
   }
   else {
     meseajax="01";
+    control="1";
     bisesto++
+    $('#12').removeClass('active').addClass('displaynone')
+    $('#1').addClass('active').removeClass('displaynone')
   }
 
   monthselected = $('.active .mese').text();
@@ -28,16 +31,16 @@ $('#successivo').click(function(){
 
 
     if (trenta.includes(monthselected)) {
-      daygenerate(30,monthselected)
+      daygenerate(30,monthselected,bisesto)
     }
     else if ((monthselected=="Febbraio") && (bisesto % 4 == 0)) {
-      daygenerate(29,monthselected)
+      daygenerate(29,monthselected,bisesto)
     }
     else if ((monthselected=="Febbraio") && (bisesto % 4 != 0)) {
-      daygenerate(28,monthselected)
+      daygenerate(28,monthselected,bisesto)
     }
     else {
-      daygenerate(31,monthselected)
+      daygenerate(31,monthselected,bisesto)
     }
 
 
@@ -78,9 +81,9 @@ $('#successivo').click(function(){
 
 
 //funzione che genera i giorni del mese
-function daygenerate(numberOfday,month) {
+function daygenerate(numberOfday,month,anno) {
   for (var i = 1; i <= numberOfday; i++) {
     $('.active .result').append('<li>' + '<span ' + 'class=' + i + '>'+ i + '</span>' + '<span>' + month + '</span>' + '</li>')
-    // + ' ' + month
   }
+  $('.anno').html(anno)
 }
