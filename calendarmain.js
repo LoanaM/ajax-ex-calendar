@@ -64,19 +64,27 @@ $('#successivo').click(function(){
             for (var i = 0; i < data.holidays.length; i++) {
               // $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
               holidaysArrey.push(moment(data.holidays[i].date).format('D'))
-              console.log(holidaysArrey);
+
+              for (var k = 1; k < 31; k++) {
+                inclusa = $('.active .result .' + k).text()
+                if (holidaysArrey.includes(inclusa)) {
+                  var ggfestivo = $('.active .result .' + k)
+                  ggfestivo.addClass('festività')
+                }
+              }
+
             }
             console.log(data);
-            newarrey = ["15"]
-            for (var k = 1; k < 25; k++) {
-              inclusa = $('.result .' + k).text()
-              if (newarrey.includes(inclusa)) {
-                $('.result .3').addClass('festività')
-                // alert('ok')
-                // var ggfestivo = $('.result .' + k)
-                // ggfestivo.addClass('festività')
-              }
-            }
+
+
+
+            // for (var k = 1; k < 25; k++) {
+            //   inclusa = $('.active .result .' + k).text()
+            //   if (newArrey.includes(inclusa)) {
+            //     var ggfestivo = $('.active .result .' + k)
+            //     ggfestivo.addClass('festività')
+            //   }
+            // }
           },
           error: function(){
             alert('error');
