@@ -22,6 +22,7 @@ $('#successivo').click(function(){
     meseajax="01";
     bisesto++
   }
+
   monthselected = $('.active .mese').text();
   console.log(monthselected)
 
@@ -52,6 +53,9 @@ $('#successivo').click(function(){
           success: function(data) {
             for (var i = 0; i < data.holidays.length; i++) {
               $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
+
+
+
 
             }
             console.log(data);
