@@ -2,12 +2,8 @@ var paese = $('#country').val()
 var monthselected = "Gennaio"
 // var trentuno = ["Gennaio","Marzo","Maggio","Luglio","Agosto","Ottobre","Dicembre"];
 var trenta = ["Novembre", "Aprile", "Giugno", "Settembre"];
-
 var meseajax = parseInt($('.active').attr('valore'))
-console.log(meseajax)
 var bisesto = "2017";
-
-var ggmese = $('ul')
 var control = "1";
 
 $('#successivo').click(function(){
@@ -16,7 +12,6 @@ $('#successivo').click(function(){
     $('#' + control).removeClass('active').addClass('displaynone')
     control++
     $('#' + control).addClass('active').removeClass('displaynone')
-    console.log(control)
   }
   else {
     meseajax="01";
@@ -42,7 +37,6 @@ $('#successivo').click(function(){
     else {
       daygenerate(31,monthselected,bisesto)
     }
-
 
     $.ajax ({
           url: 'https://holidayapi.com/v1/holidays',
@@ -73,9 +67,29 @@ $('#successivo').click(function(){
           }
       });
 
-
-
   })
+
+
+  $('#precedente').click(function(){
+    if(meseajax!=1) {
+      meseajax--
+      $('#' + control).removeClass('active').addClass('displaynone')
+      control--
+      $('#' + control).addClass('active').removeClass('displaynone')
+      console.log(control)
+    }
+    else {
+      meseajax="12";
+      control="12";
+      bisesto--
+      $('#1').removeClass('active').addClass('displaynone')
+      $('#12').addClass('active').removeClass('displaynone')
+    }
+
+    monthselected = $('.active .mese').text();
+    console.log(monthselected)
+  });
+
 
 
 //funzione che genera i giorni del mese e l'anno
