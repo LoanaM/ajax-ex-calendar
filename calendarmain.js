@@ -56,7 +56,6 @@ $('#successivo').click(function(){
           success: function(data) {
             holidaysArrey = [];
             for (var i = 0; i < data.holidays.length; i++) {
-              // $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
               holidaysArrey.push(moment(data.holidays[i].date).format('D'))
 
               for (var k = 1; k < 31; k++) {
@@ -80,7 +79,7 @@ $('#successivo').click(function(){
   })
 
 
-//funzione che genera i giorni del mese
+//funzione che genera i giorni del mese e l'anno
 function daygenerate(numberOfday,month,anno) {
   for (var i = 1; i <= numberOfday; i++) {
     $('.active .result').append('<li>' + '<span ' + 'class=' + i + '>'+ i + '</span>' + '<span>' + month + '</span>' + '</li>')
