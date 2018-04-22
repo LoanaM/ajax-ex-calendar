@@ -25,6 +25,7 @@ $('#successivo').click(function(){
   monthselected = $('.active .mese').text();
   console.log(monthselected)
 
+
     if (trenta.includes(monthselected)) {
       daygenerate(30,monthselected)
     }
@@ -46,11 +47,11 @@ $('#successivo').click(function(){
               key:'32d92b68-8aae-4bc5-bab4-597ffee7b838',
               country: paese,
               month: meseajax,
-              year: '2017',
+              year: bisesto,
             },
           success: function(data) {
             for (var i = 0; i < data.holidays.length; i++) {
-              $('.result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
+              $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
 
             }
             console.log(data);
@@ -66,6 +67,6 @@ $('#successivo').click(function(){
 //funziona che genera i giorni del mese
 function daygenerate(numberOfday,month) {
   for (var i = 1; i <= numberOfday; i++) {
-    $('ul').append('<li>'+ i + ' ' + month +'</li>')
+    $('.active .result').append('<li>'+ i + ' ' + month +'</li>')
   }
 }
