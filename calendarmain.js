@@ -54,15 +54,14 @@ $('#successivo').click(function(){
               year: bisesto,
             },
           success: function(data) {
-            holidaysArrey = [];
             for (var i = 0; i < data.holidays.length; i++) {
-              holidaysArrey.push(moment(data.holidays[i].date).format('D'))
+              dayHoly = moment(data.holidays[i].date).format('D')
 
               for (var k = 1; k < 31; k++) {
                 inclusa = $('.active .result .' + k).text()
-                if (holidaysArrey.includes(inclusa)) {
+                if (inclusa==dayHoly) {
                   var ggfestivo = $('.active .result .' + k)
-                  ggfestivo.parent('li').addClass('festività')
+                  ggfestivo.parent('li').addClass('festività').append(' ' + data.holidays[i].name)
                 }
               }
 
