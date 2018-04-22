@@ -1,5 +1,4 @@
 var paese = $('#country').val()
-var monthselected = "Gennaio"
 // var trentuno = ["Gennaio","Marzo","Maggio","Luglio","Agosto","Ottobre","Dicembre"];
 var trenta = ["Novembre", "Aprile", "Giugno", "Settembre"];
 var meseajax = parseInt($('.active').attr('valore'))
@@ -12,6 +11,7 @@ $('#successivo').click(function(){
     $('#' + control).removeClass('active').addClass('displaynone')
     control++
     $('#' + control).addClass('active').removeClass('displaynone')
+    monthselected = $('.active .mese').text()
   }
   else {
     meseajax="01";
@@ -19,12 +19,35 @@ $('#successivo').click(function(){
     bisesto++
     $('#12').removeClass('active').addClass('displaynone')
     $('#1').addClass('active').removeClass('displaynone')
+    monthselected = $('.active .mese').text()
   }
 
-  monthselected = $('.active .mese').text();
-  console.log(monthselected)
+  calendar()
+});
+
+$('#precedente').click(function(){
+  if(meseajax!=1) {
+    meseajax--
+    $('#' + control).removeClass('active').addClass('displaynone')
+    control--
+    $('#' + control).addClass('active').removeClass('displaynone')
+    monthselected = $('.active .mese').text()
+  }
+  else {
+    meseajax="12";
+    control="12";
+    bisesto--
+    $('#1').removeClass('active').addClass('displaynone')
+    $('#12').addClass('active').removeClass('displaynone')
+    monthselected = $('.active .mese').text()
+  }
+
+  calendar()
+});
 
 
+//funziona che crea il calendario con le festività
+function calendar() {
     if (trenta.includes(monthselected)) {
       daygenerate(30,monthselected,bisesto)
     }
@@ -65,31 +88,8 @@ $('#successivo').click(function(){
           error: function(){
             alert('error');
           }
-      });
-
-  })
-
-
-  $('#precedente').click(function(){
-    if(meseajax!=1) {
-      meseajax--
-      $('#' + control).removeClass('active').addClass('displaynone')
-      control--
-      $('#' + control).addClass('active').removeClass('displaynone')
-      console.log(control)
-    }
-    else {
-      meseajax="12";
-      control="12";
-      bisesto--
-      $('#1').removeClass('active').addClass('displaynone')
-      $('#12').addClass('active').removeClass('displaynone')
-    }
-
-    monthselected = $('.active .mese').text();
-    console.log(monthselected)
-  });
-
+      })
+    };
 
 
 //funzione che genera i giorni del mese e l'anno
