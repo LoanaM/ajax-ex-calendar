@@ -66,25 +66,29 @@ $('#successivo').click(function(){
               holidaysArrey.push(moment(data.holidays[i].date).format('D'))
               console.log(holidaysArrey);
             }
-
-
-            for (var k = 1; k < 32; k++) {
+            console.log(data);
+            newarrey = ["15"]
+            for (var k = 1; k < 25; k++) {
               inclusa = $('.result .' + k).text()
-              if (holidaysArrey.includes(inclusa)) {
-                console.log(ok)
+              if (newarrey.includes(inclusa)) {
+                $('.result .3').addClass('festività')
+                // alert('ok')
+                // var ggfestivo = $('.result .' + k)
+                // ggfestivo.addClass('festività')
               }
             }
-            console.log(data);
-
           },
           error: function(){
             alert('error');
           }
       });
+
+
+
   })
 
 
-//funziona che genera i giorni del mese
+//funzione che genera i giorni del mese
 function daygenerate(numberOfday,month) {
   for (var i = 1; i <= numberOfday; i++) {
     $('.active .result').append('<li ' + 'class=' + i + '>'+ i +'</li>')
