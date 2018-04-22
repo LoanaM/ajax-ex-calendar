@@ -40,6 +40,15 @@ $('#successivo').click(function(){
       daygenerate(31,monthselected)
     }
 
+    // holidaysArrey = ["16","25"];
+    // for (var k = 1; k < 28; k++) {
+    //           inclusa = $('.result .' + k).text()
+    //           console.log(inclusa)
+    //           if (holidaysArrey.includes(inclusa)) {
+    //             console.log('ok')
+    //           }
+    //         }
+
 
     $.ajax ({
           url: 'https://holidayapi.com/v1/holidays',
@@ -51,12 +60,19 @@ $('#successivo').click(function(){
               year: bisesto,
             },
           success: function(data) {
+            holidaysArrey = [];
             for (var i = 0; i < data.holidays.length; i++) {
-              $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
+              // $('.active .result').append(moment(data.holidays[i].date).format('D MMMM')  + ' - ' + data.holidays[i].name + '<br>')
+              holidaysArrey.push(moment(data.holidays[i].date).format('D'))
+              console.log(holidaysArrey);
+            }
 
 
-
-
+            for (var k = 1; k < 32; k++) {
+              inclusa = $('.result .' + k).text()
+              if (holidaysArrey.includes(inclusa)) {
+                console.log(ok)
+              }
             }
             console.log(data);
 
@@ -71,6 +87,7 @@ $('#successivo').click(function(){
 //funziona che genera i giorni del mese
 function daygenerate(numberOfday,month) {
   for (var i = 1; i <= numberOfday; i++) {
-    $('.active .result').append('<li>'+ i + ' ' + month +'</li>')
+    $('.active .result').append('<li ' + 'class=' + i + '>'+ i +'</li>')
+    // + ' ' + month
   }
 }
