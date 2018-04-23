@@ -2,7 +2,6 @@ var mese = "01"
 var anno = "2017"
 var paese = $('#country').val()
 
-generategrid()
 calendar()
 
 $('#successivo').click(function(){
@@ -36,7 +35,8 @@ function calendar(){
   // $('.calendario').html(''); -- vecchio calendario
   dayweek = moment("2017-"+mese+"-02").day()
   for (var i = 1; i <= ggmese; i++) {
-    // var data2 = moment("2017-"+mese).format("MMMM") -- calendario verticale
+    var data2 = moment(anno+"-"+mese).format("MMMM YYYY")
+    $('.calendarmonth').html(data2)
     // $('.calendario').append('<li>'+'<span id='+i+'>'+i+'</span>'+data2+'</li>')- calendario verticale
     $('.grid .block.'+dayweek).html('<span id='+i+'>'+i+'</span>')
     dayweek++
