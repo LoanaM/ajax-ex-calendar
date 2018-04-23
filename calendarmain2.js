@@ -33,7 +33,7 @@ function calendar(){
   $('.grid').html('')
   generategrid()
   // $('.calendario').html(''); -- vecchio calendario
-  dayweek = moment("2017-"+mese+"-02").day()
+  dayweek = moment("2017-"+mese+"-01").day()
   for (var i = 1; i <= ggmese; i++) {
     var data2 = moment(anno+"-"+mese).format("MMMM YYYY")
     $('.calendarmonth').html(data2)
@@ -42,33 +42,35 @@ function calendar(){
     dayweek++
   }
 
-  // $.ajax ({
-  //           url: 'https://holidayapi.com/v1/holidays',
-  //           method: "GET",
-  //           data: {
-  //               key:'32d92b68-8aae-4bc5-bab4-597ffee7b838',
-  //               country: paese,
-  //               month: mese,
-  //               year: anno,
-  //             },
-  //           success: function(data) {
-  //             for (var i = 0; i < data.holidays.length; i++) {
-  //               dayHoly = moment(data.holidays[i].date).format('D')
-  //               //confronto i gg festivi e aggiungo il colore red
-  //               for (var k = 1; k < 31; k++) {
-  //                 inclusa = $('.calendario #' + k).text()
-  //                 if (inclusa==dayHoly) {
-  //                   var ggfestivo = $('.calendario #' + k)
-  //                   ggfestivo.parent('li').addClass('festività').append(' ' + data.holidays[i].name)
-  //                 }
-  //               }
-  //             }
-  //             console.log(data);
-  //           },
-  //           error: function(){
-  //             alert('error');
-  //           }
-  //       })
+  $.ajax ({
+            url: 'https://holidayapi.com/v1/holidays',
+            method: "GET",
+            data: {
+                key:'32d92b68-8aae-4bc5-bab4-597ffee7b838',
+                country: paese,
+                month: mese,
+                year: anno,
+              },
+            success: function(data) {
+              for (var i = 0; i < data.holidays.length; i++) {
+                dayHoly = moment(data.holidays[i].date).format('D')
+
+                //confronto i gg festivi e aggiungo il colore red
+                for (var k = 1; k < 31; k++) {
+                  inclusa = $('.block #' + k).text()
+                  if (inclusa==dayHoly) {
+                    $('.block #' + k).addClass('festività').append(' ' + data.holidays[i].name)
+                    // ggfestivo.siblings('span').addClass('festività')
+                    //
+                  }
+                }
+              }
+              console.log(data);
+            },
+            error: function(){
+              alert('error');
+            }
+        })
 };
 
 
