@@ -1,5 +1,8 @@
-mese = "01"
-anno = "2017"
+var mese = "01"
+var anno = "2017"
+var paese = $('#country').val()
+
+calendar()
 
 $('#successivo').click(function(){
   if(mese!=12) {
@@ -29,9 +32,37 @@ function calendar(){
 
   $('.calendario').html('');
   for (var i = 1; i <= ggmese; i++) {
-    var data2 = moment("2017-"+mese+"-"+i).format("D MMMM")
-    $('.calendario').append(data2 + '<br>')
+    var data2 = moment("2017-"+mese).format("MMMM")
+    $('.calendario').append('<li>'+'<span id='+i+'>'+i+'</span>'+data2 + '</li>')
   }
+
+  $.ajax ({
+            url: 'https://holidayapi.com/v1/holidays',
+            method: "GET",
+            data: {
+                key:'32d92b68-8aae-4bc5-bab4-597ffee7b838',
+                country: paese,
+                month: mese,
+                year: anno,
+              },
+            success: function(data) {
+              for (var i = 0; i < data.holidays.length; i++) {
+                dayHoly = moment(data.holidays[i].date).format('D')
+                //confronto i gg festivi e aggiungo il colore red
+                for (var k = 1; k < 31; k++) {
+                  inclusa = $('.calendario #' + k).text()
+                  if (inclusa==dayHoly) {
+                    var ggfestivo = $('.calendario #' + k)
+                    ggfestivo.parent('li').addClass('festività').append(' ' + data.holidays[i].name)
+                  }
+                }
+              }
+              console.log(data);
+            },
+            error: function(){
+              alert('error');
+            }
+        })
 
 }
 
