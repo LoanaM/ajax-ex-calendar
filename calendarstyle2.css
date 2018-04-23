@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+.festività {
+  color: red;
+}
+.displaynone {
+  display: none;
+}
+#precedente , #successivo {
+  cursor: pointer;
+}
+
+.grid {
+  width: 700px;
+  height: 500px;
+}
+.block {
+  float: left;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
