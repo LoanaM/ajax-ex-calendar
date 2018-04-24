@@ -34,6 +34,9 @@ function calendar(){
   generategrid()
   // $('.calendario').html(''); -- vecchio calendario
   dayweek = moment("2017-"+mese+"-01").day()
+  if (dayweek==0) {
+    dayweek=7
+  }
   for (var i = 1; i <= ggmese; i++) {
     var data2 = moment(anno+"-"+mese).format("MMMM YYYY")
     $('.calendarmonth').html(data2)
@@ -73,10 +76,9 @@ function calendar(){
         })
 };
 
-
 // creo la griglia-calendario
 function generategrid(){
-  for (var i = 0; i < 42; i++) {
+  for (var i = 1; i < 43; i++) {
     $('.grid').append('<div class="block '+i+'"'+'>'+'</div>')
     }
 }
