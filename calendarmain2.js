@@ -76,7 +76,7 @@ function calendar(){
 
 // creo la griglia-calendario
 function generategrid(){
-  for (var i = 0; i < 35; i++) {
+  for (var i = 0; i < 42; i++) {
     $('.grid').append('<div class="block '+i+'"'+'>'+'</div>')
     }
 }
