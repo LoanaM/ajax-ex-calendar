@@ -32,15 +32,16 @@ function calendar(){
   //svuoto la griglia dal contenuto e ne genero una nuova
   $('.grid').html('')
   generategrid()
-  // $('.calendario').html(''); -- vecchio calendario
-  dayweek = moment("2017-"+mese+"-01").day()
+  // $('.calendario').html(''); //-- vecchio calendario
+  //calcolo il giorno della settimana di inizio
+  dayweek = moment(data).day()
   if (dayweek==0) {
     dayweek=7
   }
   for (var i = 1; i <= ggmese; i++) {
     var data2 = moment(anno+"-"+mese).format("MMMM YYYY")
     $('.calendarmonth').html(data2)
-    // $('.calendario').append('<li>'+'<span id='+i+'>'+i+'</span>'+data2+'</li>')- calendario verticale
+    // $('.calendario').append('<li>'+'<span id='+i+'>'+i+'</span>'+data2+'</li>')-- calendario verticale
     $('.grid .block.'+dayweek).html('<span id='+i+'>'+i+'</span>')
     dayweek++
   }
@@ -58,13 +59,12 @@ function calendar(){
               for (var i = 0; i < data.holidays.length; i++) {
                 dayHoly = moment(data.holidays[i].date).format('D')
 
-                //confronto i gg festivi e aggiungo il colore red
+                //confronto i gg festivi e aggiungo il colore red e il nome della festività
                 for (var k = 1; k < 31; k++) {
                   inclusa = $('.block #' + k).text()
                   if (inclusa==dayHoly) {
                     $('.block #' + k).addClass('festività').append(' ' + data.holidays[i].name)
-                    // ggfestivo.siblings('span').addClass('festività')
-                    //
+                    // ggfestivo.parents('li').addClass('festività') -- vecchio calendario
                   }
                 }
               }
